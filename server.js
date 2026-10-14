@@ -83,7 +83,7 @@ app.post("/api/analisar", async (req, res) => {
     });
 
     const resposta = await client.models.generateContent({
-      model: process.env.GEMINI_MODEL || "gemini-3.8-flash",
+      model: process.env.GEMINI_MODEL || "gemini-3.6-flash",
       contents: JSON.stringify(dados),
       config: {
         systemInstruction: INSTRUCOES_IA,
