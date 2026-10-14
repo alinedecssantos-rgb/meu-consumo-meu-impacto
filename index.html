@@ -1,0 +1,1588 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meu Consumo, Meu Impacto</title>
+  <meta name="description" content="Descubra oportunidades para tornar seu consumo mais consciente e sustentável.">
+
+  <style>
+    :root {
+      --azul: #0075c9;
+      --azul-escuro: #073b66;
+      --azul-claro: #eaf6ff;
+      --ciano: #00a8e0;
+      --texto: #183247;
+      --texto-suave: #637889;
+      --fundo: #f3f7fb;
+      --branco: #ffffff;
+      --borda: #dce7f0;
+      --verde: #16865b;
+      --amarelo: #bd8500;
+      --laranja: #c66b20;
+      --vermelho: #c64343;
+      --sombra: 0 12px 34px rgba(14, 57, 89, .08);
+      --raio: 20px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--fundo);
+      color: var(--texto);
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      line-height: 1.55;
+    }
+
+    button, input, select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .pagina {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 48px;
+    }
+
+    .cabecalho {
+      position: relative;
+      overflow: hidden;
+      padding: 36px;
+      border-radius: 26px;
+      color: white;
+      background: linear-gradient(120deg, #063b69 0%, #0078c9 58%, #00a7d8 100%);
+      box-shadow: var(--sombra);
+    }
+
+    .cabecalho::before,
+    .cabecalho::after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .cabecalho::before {
+      width: 290px;
+      height: 290px;
+      right: -90px;
+      top: -145px;
+    }
+
+    .cabecalho::after {
+      width: 220px;
+      height: 220px;
+      right: 65px;
+      bottom: -160px;
+    }
+
+    .cabecalho-conteudo {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+    }
+
+    .etiqueta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border: 1px solid rgba(255,255,255,.35);
+      border-radius: 999px;
+      background: rgba(255,255,255,.12);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 18px 0 10px;
+      font-size: clamp(30px, 5vw, 45px);
+      line-height: 1.1;
+      letter-spacing: -.035em;
+    }
+
+    .subtitulo {
+      max-width: 680px;
+      margin: 0;
+      color: rgba(255,255,255,.88);
+      font-size: 16px;
+    }
+
+    .marcadores {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .marcador {
+      padding: 8px 12px;
+      border-radius: 10px;
+      background: rgba(255,255,255,.14);
+      color: white;
+      font-size: 13px;
+    }
+
+    .intro {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+      margin: 28px 2px 18px;
+    }
+
+    .intro h2 {
+      margin: 0 0 5px;
+      font-size: 23px;
+      letter-spacing: -.02em;
+    }
+
+    .intro p {
+      margin: 0;
+      color: var(--texto-suave);
+      font-size: 14px;
+    }
+
+    .tempo {
+      flex-shrink: 0;
+      padding: 8px 12px;
+      border-radius: 10px;
+      background: #e6f3fc;
+      color: var(--azul-escuro);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .cartao {
+      margin-top: 18px;
+      padding: 26px;
+      border: 1px solid rgba(220,231,240,.9);
+      border-radius: var(--raio);
+      background: var(--branco);
+      box-shadow: var(--sombra);
+    }
+
+    .titulo-secao {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .numero-secao {
+      display: grid;
+      flex: 0 0 40px;
+      width: 40px;
+      height: 40px;
+      place-items: center;
+      border-radius: 13px;
+      background: var(--azul-claro);
+      color: var(--azul);
+      font-size: 17px;
+      font-weight: 800;
+    }
+
+    .titulo-secao h3 {
+      margin: 0 0 3px;
+      font-size: 18px;
+    }
+
+    .titulo-secao p {
+      margin: 0;
+      color: var(--texto-suave);
+      font-size: 13px;
+    }
+
+    .grade {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .campo {
+      min-width: 0;
+    }
+
+    .campo label,
+    .rotulo-campo {
+      display: block;
+      margin-bottom: 7px;
+      color: #28465d;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .campo input,
+    .campo select {
+      width: 100%;
+      min-height: 48px;
+      padding: 11px 13px;
+      border: 1px solid #cfdde8;
+      border-radius: 11px;
+      outline: none;
+      background: #fff;
+      color: var(--texto);
+      transition: border-color .2s, box-shadow .2s;
+    }
+
+    .campo input:focus,
+    .campo select:focus {
+      border-color: var(--azul);
+      box-shadow: 0 0 0 3px rgba(0,117,201,.12);
+    }
+
+    .ajuda {
+      display: block;
+      margin-top: 6px;
+      color: var(--texto-suave);
+      font-size: 11px;
+    }
+
+    .campo-largo {
+      grid-column: 1 / -1;
+    }
+
+    .nota {
+      margin-top: 18px;
+      padding: 13px 15px;
+      border: 1px solid #d5eaf8;
+      border-radius: 12px;
+      background: #f2f9fe;
+      color: #31556e;
+      font-size: 12px;
+    }
+
+    .opcoes-habitos {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .acao-principal {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      margin-top: 24px;
+      padding: 15px 22px;
+      border: 0;
+      border-radius: 13px;
+      background: linear-gradient(100deg, #0075c9, #00a1d6);
+      color: white;
+      font-size: 15px;
+      font-weight: 800;
+      box-shadow: 0 8px 18px rgba(0,117,201,.2);
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .acao-principal:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 22px rgba(0,117,201,.25);
+    }
+
+    .acao-secundaria {
+      padding: 11px 16px;
+      border: 1px solid var(--borda);
+      border-radius: 11px;
+      background: white;
+      color: var(--azul-escuro);
+      font-weight: 700;
+    }
+
+    .erro {
+      display: none;
+      margin-top: 14px;
+      padding: 12px 14px;
+      border: 1px solid #f0caca;
+      border-radius: 10px;
+      background: #fff2f2;
+      color: #982e2e;
+      font-size: 13px;
+    }
+
+    .rodape {
+      padding: 24px 8px 0;
+      color: var(--texto-suave);
+      text-align: center;
+      font-size: 12px;
+    }
+
+    @media (max-width: 700px) {
+      .pagina {
+        width: min(100% - 20px, 1120px);
+        padding-top: 10px;
+      }
+
+      .cabecalho {
+        padding: 26px 22px;
+        border-radius: 20px;
+      }
+
+      .intro {
+        display: block;
+      }
+
+      .tempo {
+        display: inline-block;
+        margin-top: 12px;
+      }
+
+      .cartao {
+        padding: 20px 16px;
+      }
+
+      .grade,
+      .opcoes-habitos {
+        grid-template-columns: 1fr;
+      }
+
+      .campo-largo {
+        grid-column: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="pagina">
+    <header class="cabecalho">
+      <div class="cabecalho-conteudo">
+        <span class="etiqueta">🌱 Consumo consciente · ODS 12</span>
+        <h1>Meu Consumo,<br>Meu Impacto</h1>
+        <p class="subtitulo">
+          Pequenas escolhas podem gerar grandes mudanças.
+          Entenda seus hábitos de consumo e descubra oportunidades
+          para economizar recursos, reduzir desperdícios e viver de forma mais sustentável.
+        </p>
+        <div class="marcadores">
+          <span class="marcador">💧 Uso de água</span>
+          <span class="marcador">⚡ Energia</span>
+          <span class="marcador">♻️ Consumo responsável</span>
+          <span class="marcador">🤖 Análise personalizada por IA</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="intro">
+      <div>
+        <h2>Vamos entender seu consumo?</h2>
+        <p>Preencha as informações abaixo para receber seu diagnóstico e sugestões práticas.</p>
+      </div>
+      <span class="tempo">⏱ Cerca de 3 minutos</span>
+    </section>
+
+    <form id="formulario" onsubmit="calcular(event)">
+      <section class="cartao">
+        <div class="titulo-secao">
+          <span class="numero-secao">01</span>
+          <div>
+            <h3>Seu contexto familiar</h3>
+            <p>Informações para contextualizar os gastos da residência.</p>
+          </div>
+        </div>
+
+        <div class="grade">
+          <div class="campo">
+            <label for="moradores">Quantas pessoas moram na casa?</label>
+            <input id="moradores" type="number" min="1" max="30" value="3" required>
+          </div>
+
+          <div class="campo">
+            <label for="renda">Faixa de renda mensal familiar</label>
+            <select id="renda" required>
+              <option value="">Selecione uma faixa</option>
+              <option value="Até R$ 2.000">Até R$ 2.000</option>
+              <option value="R$ 2.001 a R$ 4.000">R$ 2.001 a R$ 4.000</option>
+              <option value="R$ 4.001 a R$ 7.000">R$ 4.001 a R$ 7.000</option>
+              <option value="R$ 7.001 a R$ 12.000">R$ 7.001 a R$ 12.000</option>
+              <option value="Acima de R$ 12.000">Acima de R$ 12.000</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <section class="cartao">
+        <div class="titulo-secao">
+          <span class="numero-secao">02</span>
+          <div>
+            <h3>Contas da residência</h3>
+            <p>Informe os gastos mensais aproximados com água, energia e gás.</p>
+          </div>
+        </div>
+
+        <div class="grade">
+          <div class="campo">
+            <label for="agua">Conta mensal de água (R$)</label>
+            <input id="agua" type="number" min="0" step="0.01" placeholder="Ex.: 95,00" required>
+          </div>
+
+          <div class="campo">
+            <label for="energia">Conta mensal de energia (R$)</label>
+            <input id="energia" type="number" min="0" step="0.01" placeholder="Ex.: 180,00" required>
+          </div>
+
+          <div class="campo">
+            <label for="tipoGas">Tipo de gás utilizado</label>
+            <select id="tipoGas" onchange="atualizarGas()" required>
+              <option value="">Selecione uma opção</option>
+              <option value="comgas">Gás encanado — Comgás</option>
+              <option value="botijao">Gás de botijão — GLP</option>
+              <option value="nao_utiliza">Não utiliza gás</option>
+            </select>
+          </div>
+
+          <div class="campo" id="campoComgas" style="display:none">
+            <label for="gasComgas">Gasto mensal com gás encanado (R$)</label>
+            <input id="gasComgas" type="number" min="0" step="0.01" placeholder="Ex.: 75,00">
+          </div>
+
+          <div class="campo" id="campoBotijaoPreco" style="display:none">
+            <label for="precoBotijao">Preço de um botijão (R$)</label>
+            <input id="precoBotijao" type="number" min="0" step="0.01" placeholder="Ex.: 120,00">
+          </div>
+
+          <div class="campo" id="campoBotijaoFrequencia" style="display:none">
+            <label for="frequenciaBotijao">A cada quantos dias compra um botijão?</label>
+            <select id="frequenciaBotijao">
+              <option value="15">A cada 15 dias</option>
+              <option value="30" selected>A cada 30 dias</option>
+              <option value="45">A cada 45 dias</option>
+              <option value="60">A cada 60 dias</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="nota">
+          ℹ️ As estimativas de consumo em m³ de água e kWh de energia são calculadas
+          a partir dos valores informados. Elas não substituem os dados reais das suas contas.
+        </div>
+      </section>
+
+      <section class="cartao">
+        <div class="titulo-secao">
+          <span class="numero-secao">03</span>
+          <div>
+            <h3>Outros gastos mensais</h3>
+            <p>Estimativas dos principais gastos de consumo da família.</p>
+          </div>
+        </div>
+
+        <div class="grade">
+          <div class="campo">
+            <label for="alimentacao">Alimentação (R$)</label>
+            <input id="alimentacao" type="number" min="0" step="0.01" placeholder="Ex.: 1.200,00" required>
+            <span class="ajuda">Inclua supermercado, feira e refeições.</span>
+          </div>
+
+          <div class="campo">
+            <label for="outros">Outros gastos de consumo (R$)</label>
+            <input id="outros" type="number" min="0" step="0.01" placeholder="Ex.: 300,00" required>
+            <span class="ajuda">Ex.: roupas, higiene, limpeza e compras diversas.</span>
+          </div>
+
+          <div class="campo campo-largo">
+            <label for="transporte">Gasto mensal com transporte (R$)</label>
+            <input id="transporte" type="number" min="0" step="0.01" placeholder="Ex.: 250,00" required>
+          </div>
+        </div>
+      </section>
+
+      <section class="cartao">
+        <div class="titulo-secao">
+          <span class="numero-secao">04</span>
+          <div>
+            <h3>Seus hábitos de consumo</h3>
+            <p>Responda com sinceridade: não há respostas certas ou erradas.</p>
+          </div>
+        </div>
+
+        <div class="opcoes-habitos">
+          <div class="campo">
+            <label for="economia">Você evita desperdício de água e energia?</label>
+            <select id="economia" required>
+              <option value="">Selecione</option>
+              <option value="4">Sempre</option>
+              <option value="3">Quase sempre</option>
+              <option value="2">Às vezes</option>
+              <option value="1">Raramente</option>
+              <option value="0">Nunca</option>
+            </select>
+          </div>
+
+          <div class="campo">
+            <label for="alimentos">Você evita jogar alimentos fora?</label>
+            <select id="alimentos" required>
+              <option value="">Selecione</option>
+              <option value="4">Sempre</option>
+              <option value="3">Quase sempre</option>
+              <option value="2">Às vezes</option>
+              <option value="1">Raramente</option>
+              <option value="0">Nunca</option>
+            </select>
+          </div>
+
+          <div class="campo">
+            <label for="reciclagem">Você separa resíduos para reciclagem?</label>
+            <select id="reciclagem" required>
+              <option value="">Selecione</option>
+              <option value="4">Sempre</option>
+              <option value="3">Quase sempre</option>
+              <option value="2">Às vezes</option>
+              <option value="1">Raramente</option>
+              <option value="0">Nunca</option>
+            </select>
+          </div>
+
+          <div class="campo">
+            <label for="compras">Você avalia se precisa de algo antes de comprar?</label>
+            <select id="compras" required>
+              <option value="">Selecione</option>
+              <option value="4">Sempre</option>
+              <option value="3">Quase sempre</option>
+              <option value="2">Às vezes</option>
+              <option value="1">Raramente</option>
+              <option value="0">Nunca</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="erro" id="erroFormulario" role="alert"></div>
+
+        <button class="acao-principal" type="submit">
+          Calcular meu índice de consumo sustentável →
+        </button>
+      </section>
+    </form>
+    <section id="resultados" style="display:none" aria-live="polite">
+      <div class="cartao">
+        <div class="titulo-secao">
+          <span class="numero-secao">✓</span>
+          <div>
+            <h3>Seu diagnóstico de consumo</h3>
+            <p>Veja como seus hábitos se refletem no Índice de Consumo Sustentável.</p>
+          </div>
+        </div>
+
+        <div class="painel-ics">
+          <div class="ics-circulo">
+            <span class="ics-numero" id="ics">—</span>
+            <span class="ics-legenda">de 100 pontos</span>
+          </div>
+          <div class="ics-texto">
+            <span class="status-ics" id="categoria">Seu resultado</span>
+            <h2 id="tituloResultado">Seu consumo conta uma história.</h2>
+            <p id="mensagem">Confira os resultados e descubra por onde começar.</p>
+          </div>
+        </div>
+
+        <div class="grade-metricas">
+          <div class="metrica">
+            <span class="metrica-icone">🧾</span>
+            <span class="metrica-label">Gasto mensal estimado</span>
+            <strong id="total">R$ 0,00</strong>
+          </div>
+          <div class="metrica">
+            <span class="metrica-icone">👥</span>
+            <span class="metrica-label">Gasto por pessoa</span>
+            <strong id="porPessoa">R$ 0,00</strong>
+          </div>
+          <div class="metrica">
+            <span class="metrica-icone">💧</span>
+            <span class="metrica-label">Água estimada</span>
+            <strong id="resultadoAgua">0 m³/mês</strong>
+          </div>
+          <div class="metrica">
+            <span class="metrica-icone">⚡</span>
+            <span class="metrica-label">Energia estimada</span>
+            <strong id="resultadoEnergia">0 kWh/mês</strong>
+          </div>
+          <div class="metrica">
+            <span class="metrica-icone">🔥</span>
+            <span class="metrica-label">Gás estimado</span>
+            <strong id="resultadoGas">0</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="cartao">
+        <div class="titulo-secao">
+          <span class="numero-secao">01</span>
+          <div>
+            <h3>Desempenho por dimensão</h3>
+            <p>Entenda os resultados das cinco dimensões avaliadas.</p>
+          </div>
+        </div>
+
+        <div class="dimensoes">
+          <div class="dimensao">
+            <div class="dimensao-cabecalho">
+              <span>💧 Água</span>
+              <strong id="notaAgua">—</strong>
+            </div>
+            <div class="barra"><span id="barraAgua"></span></div>
+            <p id="statusAgua" class="texto-dimensao"></p>
+          </div>
+
+          <div class="dimensao">
+            <div class="dimensao-cabecalho">
+              <span>⚡ Energia</span>
+              <strong id="notaEnergia">—</strong>
+            </div>
+            <div class="barra"><span id="barraEnergia"></span></div>
+            <p id="statusEnergia" class="texto-dimensao"></p>
+          </div>
+
+          <div class="dimensao">
+            <div class="dimensao-cabecalho">
+              <span>🔥 Gás</span>
+              <strong id="notaGas">—</strong>
+            </div>
+            <div class="barra"><span id="barraGas"></span></div>
+            <p id="statusGas" class="texto-dimensao"></p>
+          </div>
+
+          <div class="dimensao">
+            <div class="dimensao-cabecalho">
+              <span>🥗 Alimentação</span>
+              <strong id="notaAlimentacao">—</strong>
+            </div>
+            <div class="barra"><span id="barraAlimentacao"></span></div>
+            <p id="statusAlimentacao" class="texto-dimensao"></p>
+          </div>
+
+          <div class="dimensao">
+            <div class="dimensao-cabecalho">
+              <span>♻️ Consumo e resíduos</span>
+              <strong id="notaResiduos">—</strong>
+            </div>
+            <div class="barra"><span id="barraResiduos"></span></div>
+            <p id="statusResiduos" class="texto-dimensao"></p>
+          </div>
+        </div>
+
+        <div class="oportunidade">
+          <span class="oportunidade-icone">🎯</span>
+          <div>
+            <span class="oportunidade-label">Seu principal potencial de evolução</span>
+            <h3 id="principalOportunidade">Vamos identificar juntos.</h3>
+            <p id="explicacaoOportunidade"></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="cartao">
+        <div class="titulo-secao">
+          <span class="numero-secao">02</span>
+          <div>
+            <h3>Seu plano de ação</h3>
+            <p>Pequenas ações práticas para começar a evoluir.</p>
+          </div>
+        </div>
+
+        <div id="planoAcao" class="lista-acoes"></div>
+      </div>
+
+      <div class="cartao painel-ia">
+        <div class="titulo-secao">
+          <span class="numero-secao">🤖</span>
+          <div>
+            <h3>Seu consultor de consumo sustentável</h3>
+            <p>Uma análise personalizada com apoio de inteligência artificial.</p>
+          </div>
+        </div>
+
+        <div id="estadoIA" class="estado-ia">
+          <div class="ia-icone">✦</div>
+          <div>
+            <strong>Vamos aprofundar seu diagnóstico?</strong>
+            <p>A IA analisará suas informações para sugerir oportunidades e ações alinhadas à sua realidade.</p>
+          </div>
+        </div>
+
+        <button type="button" id="botaoIA" class="acao-principal" onclick="consultarIA()">
+          Gerar minha análise personalizada →
+        </button>
+
+        <div id="respostaIA" style="display:none"></div>
+      </div>
+
+      <div class="acoes-finais">
+        <button type="button" class="acao-secundaria" onclick="fazerNovamente()">
+          ↻ Fazer nova avaliação
+        </button>
+      </div>
+
+      <div class="nota">
+        Este protótipo tem finalidade educativa e comparativa. Os resultados são estimativas
+        baseadas nas informações fornecidas e não representam certificação ambiental ou auditoria de consumo.
+      </div>
+    </section>
+
+    <footer class="rodape">
+      Meu Consumo, Meu Impacto · Educação para o consumo responsável · ODS 12
+    </footer>
+  </main>
+
+  <style>
+    .painel-ics {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      padding: 25px;
+      border-radius: 18px;
+      background: linear-gradient(115deg, #eaf6ff, #f7fbff);
+    }
+
+    .ics-circulo {
+      display: flex;
+      flex: 0 0 145px;
+      width: 145px;
+      height: 145px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 8px solid #b8e2fb;
+      border-radius: 50%;
+      background: white;
+      box-shadow: 0 6px 20px rgba(0,117,201,.08);
+    }
+
+    .ics-numero {
+      color: var(--azul-escuro);
+      font-size: 42px;
+      font-weight: 850;
+      line-height: 1;
+    }
+
+    .ics-legenda {
+      margin-top: 7px;
+      color: var(--texto-suave);
+      font-size: 11px;
+    }
+
+    .ics-texto h2 {
+      margin: 10px 0 6px;
+      font-size: 22px;
+    }
+
+    .ics-texto p {
+      margin: 0;
+      color: var(--texto-suave);
+      font-size: 14px;
+    }
+
+    .status-ics {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #d8f4e7;
+      color: #176d4b;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .grade-metricas {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .metrica {
+      display: flex;
+      min-width: 0;
+      flex-direction: column;
+      padding: 17px;
+      border: 1px solid var(--borda);
+      border-radius: 14px;
+      background: #fff;
+    }
+
+    .metrica-icone {
+      margin-bottom: 10px;
+      font-size: 21px;
+    }
+
+    .metrica-label {
+      color: var(--texto-suave);
+      font-size: 12px;
+    }
+
+    .metrica strong {
+      margin-top: 4px;
+      overflow-wrap: anywhere;
+      color: var(--azul-escuro);
+      font-size: 19px;
+    }
+
+    .dimensoes {
+      display: grid;
+      gap: 21px;
+    }
+
+    .dimensao-cabecalho {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 9px;
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .dimensao-cabecalho strong {
+      color: var(--azul-escuro);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .barra {
+      height: 10px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #e8eff5;
+    }
+
+    .barra span {
+      display: block;
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #0075c9, #00b3d8);
+      transition: width .5s ease;
+    }
+
+    .texto-dimensao {
+      margin: 6px 0 0;
+      color: var(--texto-suave);
+      font-size: 12px;
+    }
+
+    .oportunidade {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-top: 28px;
+      padding: 18px;
+      border: 1px solid #d4e9f7;
+      border-radius: 15px;
+      background: #f2f9fe;
+    }
+
+    .oportunidade-icone {
+      font-size: 25px;
+    }
+
+    .oportunidade-label {
+      color: var(--azul);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .oportunidade h3 {
+      margin: 5px 0;
+      font-size: 17px;
+    }
+
+    .oportunidade p {
+      margin: 0;
+      color: var(--texto-suave);
+      font-size: 13px;
+    }
+
+    .lista-acoes {
+      display: grid;
+      gap: 12px;
+    }
+
+    .acao-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+      padding: 16px;
+      border: 1px solid var(--borda);
+      border-radius: 13px;
+      background: #fff;
+    }
+
+    .acao-numero {
+      display: grid;
+      flex: 0 0 34px;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border-radius: 10px;
+      background: var(--azul-claro);
+      color: var(--azul);
+      font-weight: 800;
+    }
+
+    .acao-item h4 {
+      margin: 0 0 5px;
+      font-size: 14px;
+    }
+
+    .acao-item p {
+      margin: 0;
+      color: var(--texto-suave);
+      font-size: 13px;
+    }
+
+    .painel-ia {
+      border-top: 4px solid var(--ciano);
+    }
+
+    .estado-ia {
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+      padding: 17px;
+      border-radius: 14px;
+      background: #f2f9fe;
+    }
+
+    .ia-icone {
+      display: grid;
+      flex: 0 0 36px;
+      width: 36px;
+      height: 36px;
+      place-items: center;
+      border-radius: 11px;
+      background: #d8efff;
+      color: var(--azul);
+      font-size: 22px;
+    }
+
+    .estado-ia strong {
+      font-size: 14px;
+    }
+
+    .estado-ia p {
+      margin: 5px 0 0;
+      color: var(--texto-suave);
+      font-size: 13px;
+    }
+
+    #respostaIA {
+      margin-top: 18px;
+    }
+
+    .resposta-bloco {
+      margin-top: 14px;
+      padding: 17px;
+      border: 1px solid var(--borda);
+      border-radius: 14px;
+      background: #fff;
+    }
+
+    .resposta-bloco h4 {
+      margin: 0 0 8px;
+      color: var(--azul-escuro);
+      font-size: 15px;
+    }
+
+    .resposta-bloco p {
+      margin: 0;
+      color: var(--texto);
+      font-size: 14px;
+      white-space: pre-wrap;
+    }
+
+    .acoes-finais {
+      display: flex;
+      justify-content: center;
+      margin: 24px 0 10px;
+    }
+
+    @media (max-width: 700px) {
+      .painel-ics {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .ics-circulo {
+        align-self: center;
+      }
+
+      .grade-metricas {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .metrica strong {
+        font-size: 17px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .grade-metricas {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+  <script>
+    const $ = (id) => document.getElementById(id);
+
+    let dadosUltimaAvaliacao = null;
+    let consultaEmAndamento = false;
+
+    function numero(id) {
+      const valor = parseFloat($(id).value);
+      return Number.isFinite(valor) ? Math.max(0, valor) : 0;
+    }
+
+    function moeda(valor) {
+      return new Intl.NumberFormat("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+      }).format(Number.isFinite(valor) ? valor : 0);
+    }
+
+    function numeroBR(valor, casas = 1) {
+      return new Intl.NumberFormat("pt-BR", {
+        minimumFractionDigits: casas,
+        maximumFractionDigits: casas
+      }).format(Number.isFinite(valor) ? valor : 0);
+    }
+
+    function atualizarGas() {
+      const tipo = $("tipoGas").value;
+
+      $("campoComgas").style.display = tipo === "comgas" ? "block" : "none";
+      $("campoBotijaoPreco").style.display = tipo === "botijao" ? "block" : "none";
+      $("campoBotijaoFrequencia").style.display = tipo === "botijao" ? "block" : "none";
+
+      $("gasComgas").required = tipo === "comgas";
+      $("precoBotijao").required = tipo === "botijao";
+      $("frequenciaBotijao").required = tipo === "botijao";
+    }
+
+    function valorHabito(id) {
+      return Math.max(0, Math.min(4, numero(id)));
+    }
+
+    function notaAgua(consumoPorPessoa) {
+      if (consumoPorPessoa <= 4) return 100;
+      if (consumoPorPessoa <= 5) return 85;
+      if (consumoPorPessoa <= 6.15) return 70;
+      if (consumoPorPessoa <= 7) return 55;
+      if (consumoPorPessoa <= 8) return 40;
+      return 20;
+    }
+
+    function notaEnergia(consumoPorPessoa) {
+      if (consumoPorPessoa <= 120) return 100;
+      if (consumoPorPessoa <= 160) return 85;
+      if (consumoPorPessoa <= 182.3) return 70;
+      if (consumoPorPessoa <= 220) return 55;
+      if (consumoPorPessoa <= 300) return 40;
+      return 20;
+    }
+
+    function notaGas(consumoPorPessoa) {
+      if (consumoPorPessoa <= 8) return 100;
+      if (consumoPorPessoa <= 12) return 80;
+      if (consumoPorPessoa <= 18) return 60;
+      if (consumoPorPessoa <= 25) return 40;
+      return 20;
+    }
+
+    function categoriaICS(ics) {
+      if (ics < 40) {
+        return {
+          nome: "Precisa de atenção",
+          titulo: "Vamos começar com pequenas mudanças.",
+          mensagem: "Seu resultado indica oportunidades importantes para reduzir desperdícios e desenvolver hábitos mais sustentáveis.",
+          cor: "#c64343",
+          fundo: "#fdeaea"
+        };
+      }
+
+      if (ics < 60) {
+        return {
+          nome: "Em evolução",
+          titulo: "Você já pode avançar mais.",
+          mensagem: "Alguns hábitos podem ser fortalecidos. Escolha uma mudança viável e transforme-a em rotina.",
+          cor: "#c66b20",
+          fundo: "#fff0df"
+        };
+      }
+
+      if (ics < 80) {
+        return {
+          nome: "Consumo consciente",
+          titulo: "Você está construindo bons hábitos.",
+          mensagem: "Seu resultado mostra pontos positivos e oportunidades para tornar seu consumo ainda mais responsável.",
+          cor: "#bd8500",
+          fundo: "#fff5d6"
+        };
+      }
+
+      return {
+        nome: "Consumo sustentável",
+        titulo: "Continue inspirando boas escolhas.",
+        mensagem: "Seu resultado é positivo dentro dos critérios deste protótipo. Continue acompanhando seus hábitos e procurando oportunidades de melhoria.",
+        cor: "#16865b",
+        fundo: "#d8f4e7"
+      };
+    }
+
+    function statusDimensao(percentual) {
+      if (percentual >= 80) return "Bom resultado — mantenha esse hábito.";
+      if (percentual >= 60) return "Resultado positivo, com espaço para melhorar.";
+      if (percentual >= 40) return "Existe oportunidade de evolução.";
+      return "Esta dimensão merece atenção prioritária.";
+    }
+
+    function definirDimensao(nome, pontos, maximo, ids) {
+      const percentual = maximo > 0 ? Math.max(0, Math.min(100, pontos / maximo * 100)) : 0;
+
+      $(ids.nota).textContent = `${numeroBR(pontos, 1)} / ${maximo}`;
+      $(ids.barra).style.width = `${percentual}%`;
+      $(ids.status).textContent = statusDimensao(percentual);
+
+      return {
+        nome,
+        pontos: Number(pontos.toFixed(2)),
+        maximo,
+        percentual: Number(percentual.toFixed(1))
+      };
+    }
+
+    function gerarPlanoAcao(dimensoes, habitos) {
+      const sugestoes = [];
+
+      if (dimensoes.agua.percentual < 80) {
+        sugestoes.push({
+          titulo: "Reduza o desperdício de água",
+          descricao: "Observe vazamentos, reduza o tempo de banho e evite deixar a torneira aberta durante tarefas do dia a dia."
+        });
+      }
+
+      if (dimensoes.energia.percentual < 80) {
+        sugestoes.push({
+          titulo: "Use energia de forma mais eficiente",
+          descricao: "Apague luzes desnecessárias, aproveite a iluminação natural e desligue aparelhos que não precisam ficar ligados."
+        });
+      }
+
+      if (dimensoes.gas.percentual < 80) {
+        sugestoes.push({
+          titulo: "Revise seus hábitos de uso do gás",
+          descricao: "Use panelas adequadas, mantenha as panelas tampadas durante o preparo e verifique se há desperdícios no uso diário."
+        });
+      }
+
+      if (dimensoes.alimentacao.percentual < 80 || habitos.alimentos <= 2) {
+        sugestoes.push({
+          titulo: "Planeje melhor a alimentação",
+          descricao: "Organize as refeições da semana, confira o que já existe em casa e aproveite os alimentos antes de comprar mais."
+        });
+      }
+
+      if (dimensoes.residuos.percentual < 80 || habitos.reciclagem <= 2) {
+        sugestoes.push({
+          titulo: "Dê uma nova atenção aos resíduos",
+          descricao: "Separe os materiais recicláveis conforme as orientações locais e evite compras por impulso, priorizando itens duráveis."
+        });
+      }
+
+      if (sugestoes.length < 3) {
+        sugestoes.push({
+          titulo: "Acompanhe seus gastos mensalmente",
+          descricao: "Compare suas contas e hábitos ao longo do tempo para identificar oportunidades de economia e consumo consciente."
+        });
+      }
+
+      return sugestoes.slice(0, 3);
+    }
+
+    function renderizarPlano(acoes) {
+      $("planoAcao").innerHTML = acoes.map((acao, indice) => `
+        <article class="acao-item">
+          <span class="acao-numero">${indice + 1}</span>
+          <div>
+            <h4>${escaparHTML(acao.titulo)}</h4>
+            <p>${escaparHTML(acao.descricao)}</p>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    function escaparHTML(valor) {
+      return String(valor ?? "").replace(/[&<>"']/g, caractere => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      })[caractere]);
+    }
+
+    function calcular(evento) {
+      if (evento) evento.preventDefault();
+
+      const formulario = $("formulario");
+
+      if (!formulario.reportValidity()) return;
+
+      const moradores = Math.max(1, numero("moradores"));
+      const tipoGas = $("tipoGas").value;
+
+      const gastoAgua = numero("agua");
+      const gastoEnergia = numero("energia");
+      const gastoAlimentacao = numero("alimentacao");
+      const gastoOutros = numero("outros");
+      const gastoTransporte = numero("transporte");
+
+      let gastoGas = 0;
+      let consumoGas = 0;
+
+      if (tipoGas === "comgas") {
+        gastoGas = numero("gasComgas");
+        consumoGas = gastoGas / 75.18 * 8;
+      } else if (tipoGas === "botijao") {
+        const precoBotijao = numero("precoBotijao");
+        const frequencia = Math.max(1, numero("frequenciaBotijao"));
+        gastoGas = precoBotijao * (30 / frequencia);
+        consumoGas = 13 * (30 / frequencia);
+      }
+
+      const consumoAgua = gastoAgua / 8.08;
+      const consumoEnergia = gastoEnergia / 0.95;
+
+      const aguaPorPessoa = consumoAgua / moradores;
+      const energiaPorPessoa = consumoEnergia / moradores;
+      const gasPorPessoa = consumoGas / moradores;
+
+      const scoreAgua = notaAgua(aguaPorPessoa);
+      const scoreEnergia = notaEnergia(energiaPorPessoa);
+      const scoreGas = tipoGas === "nao_utiliza" ? 100 : notaGas(gasPorPessoa);
+
+      const habitos = {
+        economia: valorHabito("economia"),
+        alimentos: valorHabito("alimentos"),
+        reciclagem: valorHabito("reciclagem"),
+        compras: valorHabito("compras")
+      };
+
+      // As ponderações seguem a metodologia do protótipo.
+      const pontosAgua = scoreAgua * 0.12 + (habitos.economia / 4 * 100) * 0.08;
+      const pontosEnergia = scoreEnergia * 0.12 + (habitos.economia / 4 * 100) * 0.08;
+      const pontosGas = scoreGas * 0.06 + (habitos.economia / 4 * 100) * 0.09;
+      const pontosAlimentacao = (habitos.alimentos / 4 * 100) * 0.12 +
+                                (habitos.compras / 4 * 100) * 0.08;
+      const pontosResiduos = (habitos.reciclagem / 4 * 100) * 0.15 +
+                             (habitos.compras / 4 * 100) * 0.10;
+
+      const total = gastoAgua + gastoEnergia + gastoGas +
+                    gastoAlimentacao + gastoOutros + gastoTransporte;
+
+      const dimensoes = {
+        agua: {
+          pontos: pontosAgua,
+          maximo: 20,
+          percentual: pontosAgua / 20 * 100
+        },
+        energia: {
+          pontos: pontosEnergia,
+          maximo: 20,
+          percentual: pontosEnergia / 20 * 100
+        },
+        gas: {
+          pontos: pontosGas,
+          maximo: 15,
+          percentual: pontosGas / 15 * 100
+        },
+        alimentacao: {
+          pontos: pontosAlimentacao,
+          maximo: 20,
+          percentual: pontosAlimentacao / 20 * 100
+        },
+        residuos: {
+          pontos: pontosResiduos,
+          maximo: 25,
+          percentual: pontosResiduos / 25 * 100
+        }
+      };
+
+      const ics = Math.round(
+        pontosAgua + pontosEnergia + pontosGas +
+        pontosAlimentacao + pontosResiduos
+      );
+
+      const categoria = categoriaICS(ics);
+
+      const dimensoesOrdenadas = [
+        { nome: "Água", ...dimensoes.agua },
+        { nome: "Energia", ...dimensoes.energia },
+        { nome: "Gás", ...dimensoes.gas },
+        { nome: "Alimentação", ...dimensoes.alimentacao },
+        { nome: "Consumo e resíduos", ...dimensoes.residuos }
+      ].sort((a, b) => a.percentual - b.percentual);
+
+      const principal = dimensoesOrdenadas[0];
+
+      $("ics").textContent = ics;
+      $("categoria").textContent = categoria.nome;
+      $("categoria").style.color = categoria.cor;
+      $("categoria").style.background = categoria.fundo;
+      $("tituloResultado").textContent = categoria.titulo;
+      $("mensagem").textContent = categoria.mensagem;
+
+      $("total").textContent = moeda(total);
+      $("porPessoa").textContent = moeda(total / moradores);
+      $("resultadoAgua").textContent = `${numeroBR(consumoAgua, 1)} m³/mês`;
+      $("resultadoEnergia").textContent = `${numeroBR(consumoEnergia, 1)} kWh/mês`;
+      $("resultadoGas").textContent = tipoGas === "nao_utiliza"
+        ? "Não utiliza"
+        : tipoGas === "botijao"
+          ? `${numeroBR(consumoGas, 1)} kg/mês`
+          : `${numeroBR(consumoGas, 1)} m³/mês`;
+
+      definirDimensao("Água", pontosAgua, 20, {
+        nota: "notaAgua", barra: "barraAgua", status: "statusAgua"
+      });
+
+      definirDimensao("Energia", pontosEnergia, 20, {
+        nota: "notaEnergia", barra: "barraEnergia", status: "statusEnergia"
+      });
+
+      definirDimensao("Gás", pontosGas, 15, {
+        nota: "notaGas", barra: "barraGas", status: "statusGas"
+      });
+
+      definirDimensao("Alimentação", pontosAlimentacao, 20, {
+        nota: "notaAlimentacao", barra: "barraAlimentacao", status: "statusAlimentacao"
+      });
+
+      definirDimensao("Consumo e resíduos", pontosResiduos, 25, {
+        nota: "notaResiduos", barra: "barraResiduos", status: "statusResiduos"
+      });
+
+      $("principalOportunidade").textContent = principal.nome;
+      $("explicacaoOportunidade").textContent =
+        `Esta é a dimensão com menor resultado relativo na avaliação atual (${numeroBR(principal.percentual, 1)}%). Comece por uma ação pequena e acompanhe sua evolução.`;
+
+      const plano = gerarPlanoAcao(dimensoes, habitos);
+      renderizarPlano(plano);
+
+      // Dados da avaliação usados pela consulta à IA.
+      dadosUltimaAvaliacao = {
+        projeto: "Meu Consumo, Meu Impacto",
+        moradores,
+        renda: $("renda").value,
+        gastos: {
+          agua: gastoAgua,
+          energia: gastoEnergia,
+          gas: gastoGas,
+          alimentacao: gastoAlimentacao,
+          outros: gastoOutros,
+          transporte: gastoTransporte,
+          total
+        },
+        tipoGas,
+        consumoEstimado: {
+          agua_m3_mes: Number(consumoAgua.toFixed(2)),
+          energia_kwh_mes: Number(consumoEnergia.toFixed(2)),
+          gas_estimado_mes: Number(consumoGas.toFixed(2))
+        },
+        habitos,
+        ics,
+        categoria: categoria.nome,
+        principal_oportunidade: principal.nome,
+        dimensoes: {
+          agua: dimensoes.agua,
+          energia: dimensoes.energia,
+          gas: dimensoes.gas,
+          alimentacao: dimensoes.alimentacao,
+          residuos: dimensoes.residuos
+        },
+        planoAcao: plano
+      };
+
+      $("respostaIA").style.display = "none";
+      $("respostaIA").innerHTML = "";
+      $("estadoIA").style.display = "flex";
+      $("botaoIA").disabled = false;
+      $("botaoIA").textContent = "Gerar minha análise personalizada →";
+      consultaEmAndamento = false;
+
+      $("resultados").style.display = "block";
+      $("resultados").scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    async function consultarIA() {
+      if (!dadosUltimaAvaliacao || consultaEmAndamento) return;
+
+      consultaEmAndamento = true;
+
+      const botao = $("botaoIA");
+      const estado = $("estadoIA");
+      const resposta = $("respostaIA");
+
+      botao.disabled = true;
+      botao.textContent = "Analisando suas informações...";
+      estado.style.display = "flex";
+      estado.innerHTML = `
+        <div class="ia-icone">✦</div>
+        <div>
+          <strong>Preparando sua análise personalizada</strong>
+          <p>A inteligência artificial está avaliando seus dados. Isso pode levar alguns segundos.</p>
+        </div>
+      `;
+
+      resposta.style.display = "none";
+      resposta.innerHTML = "";
+
+      try {
+        const retorno = await fetch("/api/analisar", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(dadosUltimaAvaliacao)
+        });
+
+        let dados;
+        try {
+          dados = await retorno.json();
+        } catch {
+          throw new Error("O servidor retornou uma resposta que não pôde ser interpretada.");
+        }
+
+        if (!retorno.ok) {
+          throw new Error(dados.erro || dados.mensagem || "Não foi possível concluir a análise.");
+        }
+
+        renderizarRespostaIA(dados);
+        estado.style.display = "none";
+      } catch (erro) {
+        estado.style.display = "flex";
+        estado.innerHTML = `
+          <div class="ia-icone">!</div>
+          <div>
+            <strong>Não foi possível gerar a análise neste momento.</strong>
+            <p>${escaparHTML(erro.message || "Verifique se o servidor está funcionando e tente novamente.")}</p>
+          </div>
+        `;
+      } finally {
+        consultaEmAndamento = false;
+        botao.disabled = false;
+        botao.textContent = "Tentar gerar análise novamente →";
+      }
+    }
+
+    function renderizarRespostaIA(dados) {
+      const resposta = $("respostaIA");
+
+      const blocos = [];
+
+      if (dados.resumo) {
+        blocos.push(`
+          <div class="resposta-bloco">
+            <h4>Seu panorama</h4>
+            <p>${escaparHTML(dados.resumo)}</p>
+          </div>
+        `);
+      }
+
+      if (dados.principal_oportunidade) {
+        blocos.push(`
+          <div class="resposta-bloco">
+            <h4>Principal oportunidade</h4>
+            <p>${escaparHTML(dados.principal_oportunidade)}</p>
+          </div>
+        `);
+      }
+
+      if (dados.por_que) {
+        blocos.push(`
+          <div class="resposta-bloco">
+            <h4>Por que isso importa?</h4>
+            <p>${escaparHTML(dados.por_que)}</p>
+          </div>
+        `);
+      }
+
+      if (dados.recomendacao_principal) {
+        blocos.push(`
+          <div class="resposta-bloco">
+            <h4>Recomendação prioritária</h4>
+            <p>${escaparHTML(dados.recomendacao_principal)}</p>
+          </div>
+        `);
+      }
+
+      if (Array.isArray(dados.acoes) && dados.acoes.length) {
+        const lista = dados.acoes.map((acao, indice) => `
+          <article class="acao-item">
+            <span class="acao-numero">${indice + 1}</span>
+            <div>
+              <h4>${escaparHTML(acao.titulo || `Ação ${indice + 1}`)}</h4>
+              <p>${escaparHTML(acao.descricao || "")}</p>
+            </div>
+          </article>
+        `).join("");
+
+        blocos.push(`
+          <div class="resposta-bloco">
+            <h4>Suas ações recomendadas</h4>
+            <div class="lista-acoes">${lista}</div>
+          </div>
+        `);
+      }
+
+      if (dados.mensagem_final) {
+        blocos.push(`
+          <div class="resposta-bloco">
+            <h4>Para levar com você</h4>
+            <p>${escaparHTML(dados.mensagem_final)}</p>
+          </div>
+        `);
+      }
+
+      if (!blocos.length) {
+        blocos.push(`
+          <div class="resposta-bloco">
+            <h4>Análise recebida</h4>
+            <p>${escaparHTML(JSON.stringify(dados, null, 2))}</p>
+          </div>
+        `);
+      }
+
+      resposta.innerHTML = blocos.join("");
+      resposta.style.display = "block";
+      resposta.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+
+    function fazerNovamente() {
+      $("formulario").reset();
+      $("moradores").value = 3;
+      atualizarGas();
+
+      $("resultados").style.display = "none";
+      $("erroFormulario").style.display = "none";
+      $("formulario").scrollIntoView({ behavior: "smooth", block: "start" });
+
+      dadosUltimaAvaliacao = null;
+      consultaEmAndamento = false;
+    }
+
+    atualizarGas();
+  </script>
+</body>
+</html>
